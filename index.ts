@@ -1,14 +1,6 @@
-import { Hono } from "hono";
-import { logger } from "hono/logger";
+import app from "./app";
 
-const app = new Hono();
-
-app.use("*", logger());
-app.get("/", (c) => {
-  return c.json({ message: "Hello, Express with Bun!" });
-});
-
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const server = Bun.serve({
   fetch: app.fetch,
